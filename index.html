@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<title>备考打卡工具</title>
+<title>行测备考打卡工具-增强版</title>
 <style>
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
@@ -11,9 +11,7 @@ body {
   color: #2c3e50;
 }
 
-h2 {
-  margin-bottom: 20px;
-}
+h2 { margin-bottom: 20px; }
 
 table {
   border-collapse: collapse;
@@ -24,174 +22,187 @@ table {
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-th {
-  background: #eef3ff;
-  font-weight: 600;
-}
-
-th, td {
-  padding: 10px;
-  text-align: center;
-}
-
-tr:not(:last-child) td {
-  border-bottom: 1px solid #f0f0f0;
-}
+th { background: #eef3ff; font-weight: 600; }
+th, td { padding: 12px; text-align: center; }
+tr:not(:last-child) td { border-bottom: 1px solid #f0f0f0; }
 
 input {
-  width: 80px;
   border: none;
   outline: none;
-  background: transparent;
+  background: #f9f9f9;
   text-align: center;
   font-size: 14px;
   color: #2c3e50;
+  border-radius: 4px;
+  padding: 4px;
 }
+input:focus { background: #f0f5ff; }
 
-input::placeholder {
-  color: #bbb;
-}
-
-input:focus {
-  background: #f5f8ff;
-  border-radius: 6px;
-}
+.score-input { width: 50px; }
+.time-input { width: 35px; }
+.text-input { width: 120px; text-align: left; padding-left: 8px; margin-left: 5px; }
 
 button {
   margin-right: 10px;
-  padding: 8px 14px;
+  padding: 10px 16px;
   border: none;
   border-radius: 8px;
   background: #5b8cff;
   color: white;
   cursor: pointer;
+  font-weight: 500;
   transition: 0.2s;
 }
-
-button:hover {
-  background: #4a75e6;
-}
+button:hover { background: #4a75e6; }
+#copyBtn { background: #2ecc71; }
 
 textarea {
   width: 100%;
-  height: 200px;
+  height: 220px;
   border-radius: 10px;
   border: 1px solid #e0e0e0;
-  padding: 10px;
-  font-family: monospace;
+  padding: 12px;
+  font-family: 'Cascadia Code', monospace;
+  margin-top: 15px;
 }
+.time-label { font-size: 12px; color: #95a5a6; margin: 0 1px; }
 </style>
 </head>
 <body>
 
-<h2>📅 备考打卡 <input type="date" id="date" style="width: 120px; margin-left:10px; font-size:14px;"></h2>
+<h2>📅 备考打卡 <input type="date" id="date" style="width: 130px; background:white; border:1px solid #ddd;"></h2>
 
 <table id="table">
 <thead>
 <tr>
-<th>模块</th>
-<th>组别</th>
-<th>得分</th>
-<th>正确率</th>
-<th>备注</th>
+  <th>模块</th>
+  <th>组别</th>
+  <th>得分</th>
+  <th>正确率</th>
+  <th>备注</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>言语理解</td>
-<td>第一组</td>
-<td><input type="text" class="score">/15</td>
-<td class="rate"></td>
-<td><input type="text"></td>
+  <td>言语理解</td>
+  <td>第一组</td>
+  <td><input type="number" class="score-input"> / 15</td>
+  <td class="rate">-</td>
+  <td>
+    <input type="number" class="time-input min" placeholder="分"><span class="time-label">′</span>
+    <input type="number" class="time-input sec" placeholder="秒"><span class="time-label">″</span>
+    <input type="text" class="text-input txt">
+  </td>
 </tr>
 <tr>
-<td>言语理解</td>
-<td>第二组</td>
-<td><input type="text" class="score">/15</td>
-<td class="rate"></td>
-<td><input type="text"></td>
+  <td>言语理解</td>
+  <td>第二组</td>
+  <td><input type="number" class="score-input"> / 15</td>
+  <td class="rate">-</td>
+  <td>
+    <input type="number" class="time-input min" placeholder="分">′
+    <input type="number" class="time-input sec" placeholder="秒">″
+    <input type="text" class="text-input txt">
+  </td>
 </tr>
 <tr>
-<td>判断推理</td>
-<td>第一组</td>
-<td><input type="text" class="score">/15</td>
-<td class="rate"></td>
-<td><input type="text"></td>
+  <td>判断推理</td>
+  <td>第一组</td>
+  <td><input type="number" class="score-input"> / 15</td>
+  <td class="rate">-</td>
+  <td>
+    <input type="number" class="time-input min" placeholder="分">′
+    <input type="number" class="time-input sec" placeholder="秒">″
+    <input type="text" class="text-input txt">
+  </td>
 </tr>
 <tr>
-<td>数量关系</td>
-<td>综合</td>
-<td><input type="text" class="score">/15</td>
-<td class="rate"></td>
-<td><input type="text"></td>
+  <td>数量关系</td>
+  <td>综合组</td>
+  <td><input type="number" class="score-input"> / 15</td>
+  <td class="rate">-</td>
+  <td>
+    <input type="number" class="time-input min" placeholder="分">′
+    <input type="number" class="time-input sec" placeholder="秒">″
+    <input type="text" class="text-input txt">
+  </td>
 </tr>
 </tbody>
 </table>
 
 <br>
-<button onclick="calculate()">计算正确率</button>
-<button onclick="generateMD()">生成Markdown</button>
+<button onclick="calculate()">刷新数据</button>
+<button onclick="generateMD()">生成 Markdown</button>
+<button id="copyBtn" onclick="copyToClipboard()">一键复制结果</button>
 
-<h3>Markdown 结果：</h3>
-<textarea id="md"></textarea>
+<h3>Markdown 预览：</h3>
+<textarea id="md" readonly placeholder="点击上方按钮生成结果..."></textarea>
 
 <script>
-// 自动设置今天日期
 window.onload = function() {
   const today = new Date();
-  const yyyy = today.getFullYear();
-  const mm = String(today.getMonth() + 1).padStart(2, '0');
-  const dd = String(today.getDate()).padStart(2, '0');
-  document.getElementById('date').value = `${yyyy}-${mm}-${dd}`;
+  document.getElementById('date').value = today.toISOString().split('T')[0];
 };
+
 function calculate() {
   const rows = document.querySelectorAll("tbody tr");
   rows.forEach(row => {
-    const input = row.querySelector(".score");
+    const input = row.querySelector(".score-input");
     const rateCell = row.querySelector(".rate");
-    const a = input.value;
-    const rate = ((a / 15) * 100).toFixed(0) + '%';
-    rateCell.innerText = rate;
+    const val = input.value;
+    if(val !== "") {
+        rateCell.innerText = ((parseFloat(val) / 15) * 100).toFixed(0) + '%';
+    } else {
+        rateCell.innerText = "-";
+    }
   });
 }
 
 function generateMD() {
+  calculate(); 
   const date = document.getElementById('date').value;
-  const formattedDate = date ? `# 📅 备考打卡：${date}\n` : '# 📅 备考打卡';
+  let md = `## 📅 备考打卡：${date}\n\n`;
+  md += "| 模块 | 组别 | 得分 | 正确率 | 备注 |\n";
+  md += "| :--- | :--- | :--- | :--- | :--- |\n";
+
   const rows = document.querySelectorAll("tbody tr");
-
-  let md = formattedDate + "| 模块 | 组别 | 得分 | 正确率 | 备注 |\n";
-  md += "|---|---|---|---|---|\n";
-
   rows.forEach(row => {
     const cells = row.children;
-    const score = cells[2].querySelector('input').value;
+    const scoreVal = cells[2].querySelector('.score-input').value;
+    const score = scoreVal ? `${scoreVal}/15` : "-";
     const rate = cells[3].innerText;
-    const note = cells[4].querySelector('input').value;
+    
+    // --- 核心修改逻辑 ---
+    const m = cells[4].querySelector('.min').value || "0";
+    const s = cells[4].querySelector('.sec').value || "00";
+    const txt = cells[4].querySelector('.txt').value || "";
+    
+    // 补齐秒数的 0
+    const formattedS = s.toString().padStart(2, '0');
+    
+    // 只有在填了分或秒的情况下才显示时间戳
+    let timePart = (m === "0" && s === "00") ? "" : `${m}'${formattedS}"`;
+    
+    // 组合时间与文字
+    let noteFinal = (timePart + " " + txt).trim() || "-";
 
-    md += `| ${cells[0].innerText} | ${cells[1].innerText} | ${score} | ${rate} | ${note} |
-`;
+    md += `| ${cells[0].innerText} | ${cells[1].innerText} | ${score} | ${rate} | ${noteFinal} |\n`;
   });
 
   document.getElementById('md').value = md;
 }
 
-  const rows = document.querySelectorAll("tbody tr");
-  let md = formattedDate + "| 模块 | 组别 | 得分 | 正确率 | 备注 |\n";
-
-  md += "|---|---|---|---|---|\n";
-
-  rows.forEach(row => {
-    const cells = row.children;
-    const score = cells[2].querySelector('input').value;
-    const rate = cells[3].innerText;
-    const note = cells[4].querySelector('input').value;
-
-    md += `| ${cells[0].innerText} | ${cells[1].innerText} | ${score} | ${rate} | ${note} |\n`;
-  });
-
-  document.getElementById('md').value = md;
-
+async function copyToClipboard() {
+  const text = document.getElementById('md').value;
+  const btn = document.getElementById('copyBtn');
+  if (!text) { alert("请先点击生成！"); return; }
+  try {
+    await navigator.clipboard.writeText(text);
+    const old = btn.innerText;
+    btn.innerText = "✅ 复制成功";
+    setTimeout(() => { btn.innerText = old; }, 2000);
+  } catch (e) { alert("复制失败"); }
+}
 </script>
 
 </body>
